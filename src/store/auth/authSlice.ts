@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 
-import { UserAuth } from "../../models/auth.model"
+import { UserAuth } from "../../models/user.model"
 
 interface SliceState {
   isAuth: boolean
@@ -12,12 +12,13 @@ interface SliceState {
 
 const initialState: SliceState = {
   isAuth: false,
-  accessToken: null,
-  refreshToken: null,
+  accessToken: localStorage.getItem("accessToken"),
+  refreshToken: localStorage.getItem("refreshToken"),
   user: null,
 }
 
-type PayloadSetTokens = { accessToken: string; refreshToken: string }
+type PayloadSetUserAuth = SliceState["user"]
+type PayloadSetTokens = Pick<SliceState, "accessToken" | "refreshToken">
 
 export const authSlice = createSlice({
   name: "auth",
@@ -27,12 +28,15 @@ export const authSlice = createSlice({
       state.accessToken = payload.accessToken
       state.refreshToken = payload.refreshToken
     },
-    setIsAuth: state => {
-      state.isAuth = true
+    setIsAuth: (state, { payload: isAuth }: PayloadAction<boolean>) => {
+      state.isAuth = isAuth
+    },
+    setUserAuth: (state, { payload }: PayloadAction<PayloadSetUserAuth>) => {
+      state.user = payload
     },
   },
 })
 
-export const { setTokens, setIsAuth } = authSlice.actions
+export const { setTokens, setIsAuth, setUserAuth } = authSlice.actions
 
 export default authSlice.reducer

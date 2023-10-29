@@ -37,7 +37,6 @@ export function useCallService<
       if (options?.onSuccess) options.onSuccess(response, props)
     } catch (e) {
       const error = e as TError
-      console.log(error)
       if (options?.onError) options.onError(error, props)
     } finally {
       setIsLoading(false)

@@ -28,3 +28,11 @@ export interface User {
   phoneNumber: UserPhoneNumber
   role: UserRole
 }
+
+export interface UserAuth {
+  id: UserId
+  avatar: UserAvatar
+  firstName: UserFirstName
+  lastName: UserLastName
+  role: UserRole
+}

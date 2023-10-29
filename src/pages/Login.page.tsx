@@ -14,7 +14,14 @@ import { login } from "../features/authentication/services"
 
 import { useCallService } from "../hooks/useCallFetch"
 
-import { Button, Card, CardBody, CardHeader, Image } from "@chakra-ui/react"
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Image,
+  useToast,
+} from "@chakra-ui/react"
 
 import TextField from "../components/form/TextField"
 
@@ -23,24 +30,43 @@ import logoImg from "../assets/images/logo.jpg"
 function Login() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-
-  const { callService: callLoginService, isLoading } = useCallService({
-    serviceFn: login,
-    options: {
-      onSuccess(data) {
-        dispatch(setTokens(data))
-        dispatch(setIsAuth())
-        navigate("/")
-      },
-    },
-  })
+  const toast = useToast()
 
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm<LoginCredentials>({
     resolver: zodResolver(loginValidationSchema),
+  })
+
+  const { callService: callLoginService, isLoading } = useCallService({
+    serviceFn: login,
+    options: {
+      onSuccess(tokens) {
+        localStorage.setItem("accessToken", tokens.accessToken)
+        localStorage.setItem("refreshToken", tokens.refreshToken)
+
+        dispatch(setTokens(tokens))
+        dispatch(setIsAuth(true))
+        navigate("/")
+      },
+      onError() {
+        toast({
+          isClosable: true,
+          title: "Error",
+          description:
+            "El correo electrónico o la contraseña son incorrectas, compruébelas y vuelva a intentarlo",
+          status: "error",
+          duration: 3000,
+        })
+        reset({
+          email: "",
+          password: "",
+        })
+      },
+    },
   })
 
   const handleLogin = handleSubmit(async credentials => {
@@ -56,9 +82,7 @@ function Login() {
           borderRadius={"full"}
           width={"150px"}
           height={"150px"}
-          borderWidth={1}
-          borderColor={"GrayText"}
-          borderStyle={"solid"}
+          boxShadow={"md"}
           objectFit={"cover"}
         />
       </CardHeader>

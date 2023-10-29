@@ -5,13 +5,13 @@ export interface LoginCredentials {
   password: UserPassword
 }
 
-export interface EndpointLoginResponse {
+export interface AuthTokensResponse {
   accessToken: string
   refreshToken: string
   authHeader: string
 }
 
-export interface AdapterLoginResponse {
+export interface AdapterAuthTokensResponse {
   accessToken: string
   refreshToken: string
 }

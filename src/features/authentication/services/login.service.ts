@@ -1,17 +1,17 @@
 import {
-  AdapterLoginResponse,
-  EndpointLoginResponse,
+  AdapterAuthTokensResponse,
+  AuthTokensResponse,
   LoginCredentials,
 } from "../models"
 
-import { authApi } from "../../../services/endpoints"
+import { authBaseEndpoint } from "../../../services/endpoints"
 
-import { loginAdapter } from "../adapters/login.adapter"
+import { authTokensAdapter } from "../adapters/token.adapter"
 
 export const login = async (
   credentials: LoginCredentials
-): Promise<AdapterLoginResponse> => {
-  return authApi
-    .post<EndpointLoginResponse>("/login", credentials)
-    .then(response => loginAdapter(response.data))
+): Promise<AdapterAuthTokensResponse> => {
+  return authBaseEndpoint
+    .post<AuthTokensResponse>("/login", credentials)
+    .then(response => authTokensAdapter(response.data))
 }
