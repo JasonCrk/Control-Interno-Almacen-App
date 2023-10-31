@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 
 import Login from "../pages/Login.page"
+import PaginaPrincipal from "../pages/MenuPrincipal.page"
 
 import AuthContainer from "../layouts/AuthContainer"
 import PageContainer from "../layouts/PageContainer"
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>Hello</h1>,
+        element: <PaginaPrincipal />,
       },
     ],
   },
