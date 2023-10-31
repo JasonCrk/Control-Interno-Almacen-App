@@ -20,7 +20,7 @@ const UserDetails: FC = () => {
       />
       <Text
         color={"white"}
-        fontSize={"xl"}
+        fontSize={"1.45rem"}
         textAlign={"center"}
         fontWeight={"bold"}
         lineHeight={7}
@@ -33,7 +33,7 @@ const UserDetails: FC = () => {
         px={2}
         py={1}
         rounded={"md"}
-        fontSize={"md"}
+        fontSize={"sm"}
         textAlign={"center"}
       >
         {userRoles[userAuth.role]}

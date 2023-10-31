@@ -1,6 +1,8 @@
-import { Box } from "@chakra-ui/react"
 import { FC } from "react"
+
 import { Link } from "react-router-dom"
+
+import { Box } from "@chakra-ui/react"
 
 interface Props {
   to: string
@@ -14,7 +16,9 @@ const NavLink: FC<Props> = ({ to, name }) => {
     <Box
       as={Link}
       to={to}
-      borderLeft={isActive ? "4px solid white" : "none"}
+      borderLeftColor={isActive ? "white" : "gray.700"}
+      borderLeftStyle={"solid"}
+      borderLeftWidth={"4px"}
       bg={isActive ? "gray.600" : "none"}
       color={"white"}
       fontSize={"1.05rem"}
@@ -24,6 +28,7 @@ const NavLink: FC<Props> = ({ to, name }) => {
       sx={{
         ":hover": {
           backgroundColor: "gray.600",
+          borderLeftColor: "white",
         },
       }}
     >
