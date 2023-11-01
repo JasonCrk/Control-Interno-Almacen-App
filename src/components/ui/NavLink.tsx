@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import { Box } from "@chakra-ui/react"
 
@@ -10,7 +10,8 @@ interface Props {
 }
 
 const NavLink: FC<Props> = ({ to, name }) => {
-  const isActive = window.location.pathname === to
+  const location = useLocation()
+  const isActive = location.pathname === to
 
   return (
     <Box
