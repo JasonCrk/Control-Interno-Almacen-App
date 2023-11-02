@@ -6,7 +6,7 @@ import { store } from "../../store"
 
 import { setIsAuth, setTokens, setUserAuth } from "../../store/auth/authSlice"
 
-import { AdapterAuthTokensResponse } from "../../features/authentication/models"
+import { AuthTokensResponse } from "../../features/authentication/models"
 
 import { getUserAuthByAccessToken } from "../../services/user.service"
 import {
@@ -37,7 +37,7 @@ export const isAuthenticated: LoaderFunction = async () => {
   } catch (e) {
     if (refreshToken === null) return rejectAuthentication(dispatch)
 
-    let newTokens: AdapterAuthTokensResponse
+    let newTokens: AuthTokensResponse
 
     try {
       newTokens = await refreshAuthTokens(refreshToken)

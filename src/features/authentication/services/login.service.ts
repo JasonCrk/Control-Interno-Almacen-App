@@ -1,17 +1,11 @@
-import {
-  AdapterAuthTokensResponse,
-  AuthTokensResponse,
-  LoginCredentials,
-} from "../models"
+import { AuthTokensResponse, LoginCredentials } from "../models"
 
 import { authBaseEndpoint } from "../../../services/endpoints"
 
-import { authTokensAdapter } from "../adapters/token.adapter"
-
 export const login = async (
   credentials: LoginCredentials
-): Promise<AdapterAuthTokensResponse> => {
+): Promise<AuthTokensResponse> => {
   return authBaseEndpoint
     .post<AuthTokensResponse>("/login", credentials)
-    .then(response => authTokensAdapter(response.data))
+    .then(response => response.data)
 }

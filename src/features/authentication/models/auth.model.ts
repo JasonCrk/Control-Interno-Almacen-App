@@ -10,8 +10,3 @@ export interface AuthTokensResponse {
   refreshToken: string
   authHeader: string
 }
-
-export interface AdapterAuthTokensResponse {
-  accessToken: string
-  refreshToken: string
-}
