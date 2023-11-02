@@ -25,7 +25,8 @@ const UserDetails: FC = () => {
         fontWeight={"bold"}
         lineHeight={7}
       >
-        {userAuth.firstName} {userAuth.lastName}
+        {userAuth.firstName} <br />
+        {userAuth.lastName}
       </Text>
       <Text
         color={"white"}
