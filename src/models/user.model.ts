@@ -13,13 +13,13 @@ export const userRoles: Roles = {
 }
 
 export enum UserRole {
-  ADMIN = "Administrador",
-  JEFE_UNIDAD_FINANZAS = "Jefe Unidad de Finanzas",
-  ASISTENTE = "Asistente",
-  JEFE_UNIDAD_LOGISTICA = "Jefe Unidad de Logística",
-  TECNICO_ADMINISTRATIVO_ALMACEN = "Técnico Administrativo de Almacén",
-  TECNICO_ADMINISTRATIVO_LOGISTICA = "Técnico Administrativo de Logística",
-  ANALISTA_FINANZAS = "Analista Finanzas",
+  ADMIN = "ADMIN",
+  JEFE_UNIDAD_FINANZAS = "JEFE_UNIDAD_FINANZAS",
+  ASISTENTE = "ASISTENTE",
+  JEFE_UNIDAD_LOGISTICA = "JEFE_UNIDAD_LOGISTICA",
+  TECNICO_ADMINISTRATIVO_ALMACEN = "TECNICO_ADMINISTRATIVO_ALMACEN",
+  TECNICO_ADMINISTRATIVO_LOGISTICA = "TECNICO_ADMINISTRATIVO_LOGISTICA",
+  ANALISTA_FINANZAS = "ANALISTA_FINANZAS",
 }
 
 export type UserId = number

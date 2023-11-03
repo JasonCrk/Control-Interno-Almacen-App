@@ -3,16 +3,15 @@ import { LoaderFunction, redirect } from "react-router-dom"
 import { AnyAction, Dispatch } from "@reduxjs/toolkit"
 
 import { store } from "../../store"
-
 import { setIsAuth, setTokens, setUserAuth } from "../../store/auth/authSlice"
 
 import { AuthTokensResponse } from "../../features/authentication/models"
-
-import { getUserAuthByAccessToken } from "../../services/user.service"
 import {
   refreshAuthTokens,
   verifyToken,
 } from "../../features/authentication/services"
+
+import { getUserAuthByAccessToken } from "../../services/user.service"
 
 const rejectAuthentication = (dispatch: Dispatch<AnyAction>): Response => {
   localStorage.removeItem("accessToken")
