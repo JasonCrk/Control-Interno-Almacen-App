@@ -2,9 +2,9 @@ import { useState } from "react"
 
 import { useNavigate } from "react-router-dom"
 
-import { retrieveAllMemorandumsSolicitudAsignacion } from "../features/memorandum/service"
+import { retrieveAllMemorandumsSolicitudAsignacion } from "../../features/memorandum/service"
 
-import { useFetch } from "../hooks/useFetch"
+import { useFetch } from "../../hooks/useFetch"
 
 import {
   Box,
@@ -21,9 +21,9 @@ import {
   Tr,
 } from "@chakra-ui/react"
 
-import SearchBar from "../components/ui/SearchBar"
+import SearchBar from "../../components/ui/SearchBar"
 
-import { longDatetimeFormat } from "../utils/datetimeFormats"
+import { longDatetimeFormat } from "../../utils/datetimeFormats"
 
 interface State {
   searchQuery: string

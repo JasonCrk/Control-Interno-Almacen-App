@@ -9,7 +9,7 @@ import { UserRole } from "../models/user.model"
 import Login from "../pages/Login.page"
 import PaginaPrincipal from "../pages/MenuPrincipal.page"
 
-import MemorandumsSolicitudAsignacion from "../pages/MemorandumsSolicitudAsignacion.page"
+import MemorandumsSolicitudAsignacion from "../pages/memorandum/MemorandumsSolicitudAsignacion.page"
 
 import AuthContainer from "../layouts/AuthContainer"
 import PageContainer from "../layouts/PageContainer"
