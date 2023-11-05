@@ -9,7 +9,7 @@ import { UserRole } from "../models/user.model"
 import Login from "../pages/Login.page"
 import PaginaPrincipal from "../pages/MenuPrincipal.page"
 
-import MemorandumsSolicitudAsignacion from "../pages/memorandum/MemorandumsSolicitudAsignacion.page"
+import MemorandumsSolicitudDesignacion from "../pages/memorandum/MemorandumsSolicitudDesignacion.page"
 
 import AuthContainer from "../layouts/AuthContainer"
 import PageContainer from "../layouts/PageContainer"
@@ -31,10 +31,21 @@ export const router = createBrowserRouter(
       </Route>
       <Route element={<PageContainer />} loader={isAuthenticated}>
         <Route index element={<PaginaPrincipal />} />
-        <Route element={<HasRole roles={[UserRole.JEFE_UNIDAD_LOGISTICA]} />}>
+        <Route
+          element={
+            <HasRole
+              roles={[
+                UserRole.JEFE_UNIDAD_LOGISTICA,
+                UserRole.ASISTENTE,
+                UserRole.JEFE_UNIDAD_FINANZAS,
+                UserRole.TECNICO_ADMINISTRATIVO_LOGISTICA,
+              ]}
+            />
+          }
+        >
           <Route
-            path="memorandums/solicitud-asignacion"
-            element={<MemorandumsSolicitudAsignacion />}
+            path="memorandums/solicitud-designacion"
+            element={<MemorandumsSolicitudDesignacion />}
           />
         </Route>
       </Route>

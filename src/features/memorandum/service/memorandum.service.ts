@@ -5,12 +5,12 @@ import { MemorandumResponse } from "../models"
 
 import { memorandumsBaseEndpoint } from "../../../services/endpoints"
 
-export const retrieveAllMemorandumsSolicitudAsignacion = async (
+export const getAllMemorandumsSolicitudDesignacion = async (
   searchQuery: string
 ): Promise<ListResponse<MemorandumResponse>> => {
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
-    .get<ListResponse<MemorandumResponse>>("/solicitud-asignacion", {
+    .get<ListResponse<MemorandumResponse>>("/solicitud-designacion", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
