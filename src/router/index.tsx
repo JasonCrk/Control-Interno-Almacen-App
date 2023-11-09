@@ -10,6 +10,7 @@ import Login from "../pages/Login.page"
 import PaginaPrincipal from "../pages/MenuPrincipal.page"
 
 import MemorandumsSolicitudDesignacion from "../pages/memorandum/MemorandumsSolicitudDesignacion.page"
+import SubirMemorandumSolicitudDesignacion from "../pages/memorandum/SubirMemorandumSolicitudDesignacion.page"
 
 import AuthContainer from "../layouts/AuthContainer"
 import PageContainer from "../layouts/PageContainer"
@@ -31,6 +32,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route element={<PageContainer />} loader={isAuthenticated}>
         <Route index element={<PaginaPrincipal />} />
+
         <Route
           element={
             <HasRole
@@ -46,6 +48,22 @@ export const router = createBrowserRouter(
           <Route
             path="memorandums/solicitud-designacion"
             element={<MemorandumsSolicitudDesignacion />}
+          />
+        </Route>
+
+        <Route
+          element={
+            <HasRole
+              roles={[
+                UserRole.TECNICO_ADMINISTRATIVO_LOGISTICA,
+                UserRole.ASISTENTE,
+              ]}
+            />
+          }
+        >
+          <Route
+            path="memorandums/solicitud-designacion/subir"
+            element={<SubirMemorandumSolicitudDesignacion />}
           />
         </Route>
       </Route>

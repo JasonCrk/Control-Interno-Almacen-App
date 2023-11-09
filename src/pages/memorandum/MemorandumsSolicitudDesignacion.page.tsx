@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { getAllMemorandumsSolicitudDesignacion } from "../../features/memorandum/service"
 
@@ -8,9 +8,12 @@ import { useFetch } from "../../hooks/useFetch"
 
 import {
   Box,
+  Button,
   Card,
   Center,
   Container,
+  Flex,
+  Heading,
   Spinner,
   Table,
   TableContainer,
@@ -51,6 +54,18 @@ function MemorandumsSolicitudAsignacion() {
     <Box>
       <SearchBar changeSearchQuery={handleChangeSearchQuery} />
       <Container maxW={"container.lg"}>
+        <Flex mt={4} justifyContent="space-between" alignItems="center">
+          <Heading as="h1" size="lg">
+            Memorandums de Solicitud de Designación
+          </Heading>
+          <Button
+            as={Link}
+            colorScheme="linkedin"
+            to="/memorandums/solicitud-designacion/subir"
+          >
+            Subir memorandum
+          </Button>
+        </Flex>
         <Card mt={4} overflow={"hidden"}>
           <TableContainer>
             <Table size={"lg"}>
