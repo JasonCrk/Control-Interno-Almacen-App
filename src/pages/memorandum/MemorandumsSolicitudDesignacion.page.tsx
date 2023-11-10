@@ -102,7 +102,7 @@ function MemorandumsSolicitudAsignacion() {
                       }}
                       onClick={() =>
                         navigate(
-                          "/memorandums/solicitud-asignacion/" + memorandum.id
+                          "/memorandums/solicitud-designacion/" + memorandum.id
                         )
                       }
                     >

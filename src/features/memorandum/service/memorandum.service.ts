@@ -1,7 +1,8 @@
 import { store } from "../../../store"
 
+import { DocumentId } from "../../../models/document.model"
 import { ListResponse, MessageResponse } from "../../../models/response.model"
-import { MemorandumResponse } from "../models"
+import { DetailedMemorandum, MemorandumResponse } from "../models"
 
 import { memorandumsBaseEndpoint } from "../../../services/endpoints"
 
@@ -21,12 +22,25 @@ export const getAllMemorandumsSolicitudDesignacion = async (
     .then(response => response.data)
 }
 
+export const getMemorandumById = async (
+  memorandumId: DocumentId
+): Promise<DetailedMemorandum> => {
+  const accessToken = store.getState().auth.accessToken
+  return memorandumsBaseEndpoint
+    .get<DetailedMemorandum>("/solicitud-designacion/" + memorandumId, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(response => response.data)
+}
+
 export const createMemorandumSolicitudDesignacion = async (
   data: FormData
 ): Promise<MessageResponse> => {
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
-    .post("/solicitud-designacion", data, {
+    .post<MessageResponse>("/solicitud-designacion", data, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

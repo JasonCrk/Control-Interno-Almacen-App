@@ -10,6 +10,7 @@ import Login from "../pages/Login.page"
 import PaginaPrincipal from "../pages/MenuPrincipal.page"
 
 import MemorandumsSolicitudDesignacion from "../pages/memorandum/MemorandumsSolicitudDesignacion.page"
+import DetalleMemorandumSolicitudDesignacion from "../pages/memorandum/DetalleMemorandumSolicitudDesignacion.page"
 import SubirMemorandumSolicitudDesignacion from "../pages/memorandum/SubirMemorandumSolicitudDesignacion.page"
 
 import AuthContainer from "../layouts/AuthContainer"
@@ -48,6 +49,10 @@ export const router = createBrowserRouter(
           <Route
             path="memorandums/solicitud-designacion"
             element={<MemorandumsSolicitudDesignacion />}
+          />
+          <Route
+            path="memorandums/solicitud-designacion/:memorandumId"
+            element={<DetalleMemorandumSolicitudDesignacion />}
           />
         </Route>
 

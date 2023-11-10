@@ -1,9 +1,8 @@
-import { Document } from "../../../models/document.model"
+import { Document, DocumentItem } from "../../../models/document.model"
 
-export interface MemorandumResponse extends Document {}
+export interface MemorandumResponse extends DocumentItem {}
 
 export interface DetailedMemorandum extends Document {
-  documentUrl: string
   status: string
 }
 
