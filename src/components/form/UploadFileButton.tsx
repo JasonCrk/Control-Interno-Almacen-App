@@ -42,7 +42,7 @@ const UploadFileButton: FC<Props> = ({
           variant={"outline"}
           colorScheme={isError ? "red" : "linkedin"}
         >
-          Seleccionar documento
+          Subir documento
         </Button>
 
         {value instanceof File ? (
