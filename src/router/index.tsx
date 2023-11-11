@@ -13,6 +13,8 @@ import MemorandumsSolicitudDesignacion from "../pages/memorandum/MemorandumsSoli
 import DetalleMemorandumSolicitudDesignacion from "../pages/memorandum/DetalleMemorandumSolicitudDesignacion.page"
 import SubirMemorandumSolicitudDesignacion from "../pages/memorandum/SubirMemorandumSolicitudDesignacion.page"
 
+import ListaProductos from "../pages/ListaProductos.page"
+
 import AuthContainer from "../layouts/AuthContainer"
 import PageContainer from "../layouts/PageContainer"
 
@@ -70,6 +72,19 @@ export const router = createBrowserRouter(
             path="memorandums/solicitud-designacion/subir"
             element={<SubirMemorandumSolicitudDesignacion />}
           />
+        </Route>
+
+        <Route
+          element={
+            <HasRole
+              roles={[
+                UserRole.ANALISTA_FINANZAS,
+                UserRole.TECNICO_ADMINISTRATIVO_ALMACEN,
+              ]}
+            />
+          }
+        >
+          <Route path="productos" element={<ListaProductos />} />
         </Route>
       </Route>
     </Route>
