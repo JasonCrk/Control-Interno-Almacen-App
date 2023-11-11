@@ -10,4 +10,14 @@ export interface Document {
   documentUrl: DocumentUrl
 }
 
-export type DocumentItem = Omit<Document, "documentUrl">
+export interface DocumentItem extends Omit<Document, "documentUrl"> {}
+
+export interface CreateDocumentData {
+  title: DocumentTitle
+  document: File
+}
+
+export interface UpdateDocumentData {
+  title: DocumentTitle
+  document?: File
+}

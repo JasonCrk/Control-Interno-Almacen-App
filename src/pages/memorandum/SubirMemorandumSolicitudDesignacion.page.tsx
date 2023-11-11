@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { MemorandumFormData } from "../../features/memorandum/models"
+import { CreateDocumentData } from "../../models/document.model"
+import { createDocumentSchemaValidation } from "../../validations"
+
 import { createMemorandumSolicitudDesignacion } from "../../features/memorandum/service"
-import { memorandumSchemaValidation } from "../../features/memorandum/validations"
 
 import { useCallService } from "../../hooks/useCallFetch"
 
@@ -26,8 +27,8 @@ function SubirMemorandumSolicitudDesignacion() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm<MemorandumFormData>({
-    resolver: zodResolver(memorandumSchemaValidation),
+  } = useForm<CreateDocumentData>({
+    resolver: zodResolver(createDocumentSchemaValidation),
   })
 
   const { callService, isLoading } = useCallService({
@@ -37,15 +38,14 @@ function SubirMemorandumSolicitudDesignacion() {
         navigate("/memorandums/solicitud-designacion")
         toast({
           status: "success",
-          title: "Subir memorandum",
+          title: "Documento Subido",
           description: data.message,
           duration: 3000,
+          isClosable: true,
         })
       },
     },
   })
-
-  const document = watch("document")
 
   const handleSubirMemorandum = handleSubmit(async ({ title, document }) => {
     const memorandumData = new FormData()
@@ -79,18 +79,18 @@ function SubirMemorandumSolicitudDesignacion() {
 
         <UploadFileButton
           name="document"
-          accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword"
+          accept=".docx"
           register={register}
           errorMessage={errors.document?.message}
           isError={!!errors.document}
-          value={document}
+          value={watch("document")}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             const file = event.currentTarget.files?.item(0)
             if (file) setValue("document", file)
           }}
         />
 
-        <Button type="submit" colorScheme="messenger" isLoading={isLoading}>
+        <Button type="submit" colorScheme="linkedin" isLoading={isLoading}>
           Subir memorandum
         </Button>
       </Box>
