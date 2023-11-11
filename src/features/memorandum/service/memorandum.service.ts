@@ -2,7 +2,12 @@ import { store } from "../../../store"
 
 import { DocumentId } from "../../../models/document.model"
 import { ListResponse, MessageResponse } from "../../../models/response.model"
-import { DetailedMemorandum, MemorandumResponse } from "../models"
+import {
+  DeleteDocumentService,
+  UpdateDocumentService,
+} from "../../../models/service.model"
+
+import { MemorandumDetails, MemorandumResponse } from "../models"
 
 import { memorandumsBaseEndpoint } from "../../../services/endpoints"
 
@@ -24,10 +29,10 @@ export const getAllMemorandumsSolicitudDesignacion = async (
 
 export const getMemorandumById = async (
   memorandumId: DocumentId
-): Promise<DetailedMemorandum> => {
+): Promise<MemorandumDetails> => {
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
-    .get<DetailedMemorandum>("/solicitud-designacion/" + memorandumId, {
+    .get<MemorandumDetails>("/solicitud-designacion/" + memorandumId, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -47,3 +52,27 @@ export const createMemorandumSolicitudDesignacion = async (
     })
     .then(response => response.data)
 }
+
+export const updateMemorandumSolicitudDesignacion: UpdateDocumentService =
+  async ({ documentId: memorandumId, data }) => {
+    const accessToken = store.getState().auth.accessToken
+    return memorandumsBaseEndpoint
+      .put<MessageResponse>("/solicitud-designacion/" + memorandumId, data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(response => response.data)
+  }
+
+export const deleteMemorandumSolicitudDesignacion: DeleteDocumentService =
+  async memorandumId => {
+    const accessToken = store.getState().auth.accessToken
+    return memorandumsBaseEndpoint
+      .delete<MessageResponse>("/solicitud-designacion/" + memorandumId, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(response => response.data)
+  }
