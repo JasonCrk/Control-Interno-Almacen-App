@@ -45,7 +45,7 @@ const UploadFileButton: FC<Props> = ({
           Seleccionar documento
         </Button>
 
-        {value ? (
+        {value instanceof File ? (
           <Flex color={"linkedin.600"} fontSize={"lg"} alignItems={"center"}>
             <HiDocumentText style={{ fontSize: "1.9rem" }} />
             <Text>{value.name}</Text>
