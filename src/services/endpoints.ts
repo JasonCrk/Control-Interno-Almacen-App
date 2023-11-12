@@ -9,3 +9,7 @@ export const authBaseEndpoint = axios.create({
 export const memorandumsBaseEndpoint = axios.create({
   baseURL: config.BASE_API_URL + "/memorandums",
 })
+
+export const actasBaseEndpoint = axios.create({
+  baseURL: config.BASE_API_URL + "/actas",
+})
