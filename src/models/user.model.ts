@@ -50,3 +50,10 @@ export interface UserAuth {
   lastName: UserLastName
   role: UserRole
 }
+
+export interface UserItem {
+  id: UserId
+  avatar: UserAvatar
+  firstName: UserFirstName
+  lastName: UserLastName
+}

@@ -1,11 +1,12 @@
 import { store } from "../../../store"
 
-import { DocumentId } from "../../../models/document.model"
-import { ListResponse, MessageResponse } from "../../../models/response.model"
 import {
   DeleteDocumentService,
   UpdateDocumentService,
 } from "../../../models/service.model"
+import { UserId } from "../../../models/user.model"
+import { DocumentId } from "../../../models/document.model"
+import { ListResponse, MessageResponse } from "../../../models/response.model"
 
 import { MemorandumDetails, MemorandumResponse } from "../models"
 
@@ -50,6 +51,27 @@ export const createMemorandumSolicitudDesignacion = async (
         Authorization: `Bearer ${accessToken}`,
       },
     })
+    .then(response => response.data)
+}
+
+export const assignAnalystToMemorandum = async ({
+  memorandumId,
+  analystId,
+}: {
+  memorandumId: DocumentId
+  analystId: UserId
+}): Promise<MessageResponse> => {
+  const accessToken = store.getState().auth.accessToken
+  return memorandumsBaseEndpoint
+    .post<MessageResponse>(
+      `/solicitud-designacion/${memorandumId}/asignar-analista`,
+      { analistaId: analystId },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
     .then(response => response.data)
 }
 
