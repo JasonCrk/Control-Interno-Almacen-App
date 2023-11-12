@@ -7,13 +7,13 @@ import { useAppSelector } from "../../store/hooks"
 import { Flex, Image, Text } from "@chakra-ui/react"
 
 const UserDetails: FC = () => {
-  const userAuth = useAppSelector(state => state.auth.user!)
+  const userAuth = useAppSelector(state => state.auth.user)
 
   return (
     <Flex flexDirection={"column"} alignItems={"center"} gap={1.5} px={4}>
       <Image
-        src={userAuth.avatar}
-        alt={userAuth.firstName}
+        src={userAuth?.avatar}
+        alt={userAuth?.firstName}
         rounded={"full"}
         width={"130px"}
         height={"130px"}
@@ -25,8 +25,8 @@ const UserDetails: FC = () => {
         fontWeight={"bold"}
         lineHeight={7}
       >
-        {userAuth.firstName} <br />
-        {userAuth.lastName}
+        {userAuth?.firstName} <br />
+        {userAuth?.lastName}
       </Text>
       <Text
         color={"white"}
@@ -37,7 +37,7 @@ const UserDetails: FC = () => {
         fontSize={"sm"}
         textAlign={"center"}
       >
-        {userRoles[userAuth.role]}
+        {userAuth && userRoles[userAuth.role]}
       </Text>
     </Flex>
   )

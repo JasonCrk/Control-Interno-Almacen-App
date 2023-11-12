@@ -34,9 +34,16 @@ export const authSlice = createSlice({
     setUserAuth: (state, { payload }: PayloadAction<PayloadSetUserAuth>) => {
       state.user = payload
     },
+    setLogoutAuth: state => {
+      state.user = null
+      state.accessToken = null
+      state.refreshToken = null
+      state.isAuth = false
+    },
   },
 })
 
-export const { setTokens, setIsAuth, setUserAuth } = authSlice.actions
+export const { setTokens, setIsAuth, setUserAuth, setLogoutAuth } =
+  authSlice.actions
 
 export default authSlice.reducer
