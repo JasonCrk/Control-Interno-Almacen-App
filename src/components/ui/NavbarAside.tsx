@@ -19,17 +19,16 @@ const NavbarAside: FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const handleLogout = async () => {
-    try {
-      await logout()
-      navigate("/auth/login")
-      dispatch(setLogoutAuth())
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        navigate("/auth/login")
+        dispatch(setLogoutAuth())
 
-      localStorage.removeItem("accessToken")
-      localStorage.removeItem("refreshToken")
-    } catch (e) {
-      console.log(e)
-    }
+        localStorage.removeItem("accessToken")
+        localStorage.removeItem("refreshToken")
+      })
+      .catch(e => console.error(e))
   }
 
   return (
