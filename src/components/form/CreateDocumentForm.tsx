@@ -33,6 +33,7 @@ const CreateDocumentForm: FC<Props> = ({
     formState: { errors },
     setValue,
     watch,
+    reset,
   } = useForm<CreateDocumentData>({
     resolver: zodResolver(createDocumentSchemaValidation),
   })
@@ -43,6 +44,7 @@ const CreateDocumentForm: FC<Props> = ({
       onError,
       onSuccess: data => {
         onSuccess(data)
+        reset()
       },
     },
   })
@@ -68,7 +70,7 @@ const CreateDocumentForm: FC<Props> = ({
         register={register}
         errorMessage={errors.title?.message}
         isInvalid={!!errors.title}
-        placeholder="Titulo del memorandum"
+        placeholder="Titulo"
         variant={"flushed"}
         fontSize={"2xl"}
       />
