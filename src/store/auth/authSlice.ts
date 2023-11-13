@@ -35,7 +35,6 @@ export const authSlice = createSlice({
       state.user = payload
     },
     setLogoutAuth: state => {
-      state.user = null
       state.accessToken = null
       state.refreshToken = null
       state.isAuth = false
