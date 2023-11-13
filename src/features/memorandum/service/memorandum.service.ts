@@ -75,6 +75,23 @@ export const assignAnalystToMemorandum = async ({
     .then(response => response.data)
 }
 
+export const approveMemorandumSolicitudDesignacion = (
+  memorandumId: DocumentId
+) => {
+  const accessToken = store.getState().auth.accessToken
+  return memorandumsBaseEndpoint
+    .post<MessageResponse>(
+      `/solicitud-designacion/${memorandumId}/aprobar`,
+      null,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+    .then(response => response.data)
+}
+
 export const updateMemorandumSolicitudDesignacion: UpdateDocumentService =
   async ({ documentId: memorandumId, data }) => {
     const accessToken = store.getState().auth.accessToken

@@ -6,31 +6,35 @@ import { UserRole } from "../../models/user.model"
 import { DocumentId } from "../../models/document.model"
 
 import {
+  MemorandumResponse,
+  MemorandumStatus,
+} from "../../features/memorandum/models"
+import {
   deleteMemorandumSolicitudDesignacion,
   getAllMemorandumsSolicitudDesignacion,
   updateMemorandumSolicitudDesignacion,
 } from "../../features/memorandum/service"
-import AssignAnalystToMemorandumModal from "../../features/analista/components/AssignAnalystToMemorandumModal"
 
 import { useAppSelector } from "../../store/hooks"
 
 import { useFetch } from "../../hooks/useFetch"
 
 import {
-  Avatar,
+  Badge,
   Box,
   Button,
   Container,
   Flex,
   Heading,
-  Text,
   useDisclosure,
 } from "@chakra-ui/react"
+
+import AssignAnalystToMemorandumModal from "../../features/analista/components/AssignAnalystToMemorandumModal"
+import AssignAnalystCell from "../../features/memorandum/components/AssignAnalystCell"
 
 import SearchBar from "../../components/ui/SearchBar"
 import DocumentTable from "../../components/ui/DocumentTable"
 import DocumentTableBase from "../../components/ui/DocumentTableBase"
-import { MemorandumResponse } from "../../features/memorandum/models"
 
 function MemorandumsSolicitudAsignacion() {
   const role = useAppSelector(state => state.auth.user?.role)
@@ -58,9 +62,24 @@ function MemorandumsSolicitudAsignacion() {
     refetch()
   }
 
-  const handleSelectMemorandumToAssignAnalyst = (memorandumId: DocumentId) => {
+  const handleSelectionMemorandumToAssignAnalyst = (
+    memorandumId: DocumentId
+  ) => {
     setSelectedMemorandumId(memorandumId)
     openAssignAnalystModal()
+  }
+
+  const statusColumn = {
+    header: "Estado",
+    cell: (document: MemorandumResponse) => (
+      <Badge
+        colorScheme={
+          document.status === MemorandumStatus.APROBADO ? "green" : "gray"
+        }
+      >
+        {document.status}
+      </Badge>
+    ),
   }
 
   return (
@@ -93,6 +112,7 @@ function MemorandumsSolicitudAsignacion() {
             refetch={refetch}
             onDeleteService={deleteMemorandumSolicitudDesignacion}
             onUpdateService={updateMemorandumSolicitudDesignacion}
+            extraColumns={[statusColumn]}
           />
         ) : role === UserRole.JEFE_UNIDAD_FINANZAS ? (
           <>
@@ -109,28 +129,14 @@ function MemorandumsSolicitudAsignacion() {
               extraColumns={[
                 {
                   header: "Asignar analista",
-                  cell: (document: MemorandumResponse) =>
-                    document.assigned ? (
-                      <Flex alignItems={"center"} gap={2}>
-                        <Avatar src={document.assigned.avatar} />
-                        <Text>
-                          {document.assigned.firstName}
-                          <br />
-                          {document.assigned.lastName}
-                        </Text>
-                      </Flex>
-                    ) : (
-                      <Button
-                        w={"full"}
-                        colorScheme="purple"
-                        onClick={event => {
-                          event.stopPropagation()
-                          handleSelectMemorandumToAssignAnalyst(document.id)
-                        }}
-                      >
-                        Asignar
-                      </Button>
-                    ),
+                  cell: (document: MemorandumResponse) => (
+                    <AssignAnalystCell
+                      memorandum={document}
+                      handleSelectionMemorandum={
+                        handleSelectionMemorandumToAssignAnalyst
+                      }
+                    />
+                  ),
                 },
               ]}
             />
@@ -140,6 +146,7 @@ function MemorandumsSolicitudAsignacion() {
             path="/memorandums/solicitud-designacion/"
             documents={memorandums?.data}
             isLoading={isLoading}
+            extraColumns={[statusColumn]}
           />
         )}
       </Container>
