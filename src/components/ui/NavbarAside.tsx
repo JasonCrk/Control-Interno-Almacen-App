@@ -19,7 +19,7 @@ const NavbarAside: FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     logout()
       .then(() => {
         navigate("/auth/login")
