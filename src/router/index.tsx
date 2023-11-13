@@ -15,6 +15,8 @@ import SubirMemorandumSolicitudDesignacion from "../pages/memorandum/SubirMemora
 
 import SubirActaInventario from "../pages/acta/SubirActaInventario.page"
 
+import SubirInformeSustentoDiferencias from "../pages/informe/SubirInformeSustentoDiferencias.page"
+
 import ListaProductos from "../pages/ListaProductos.page"
 
 import AuthContainer from "../layouts/AuthContainer"
@@ -93,6 +95,17 @@ export const router = createBrowserRouter(
           <Route
             path="actas/inventario/subir"
             element={<SubirActaInventario />}
+          />
+        </Route>
+
+        <Route
+          element={
+            <HasRole roles={[UserRole.TECNICO_ADMINISTRATIVO_ALMACEN]} />
+          }
+        >
+          <Route
+            path="informes/sustento-diferencias/subir"
+            element={<SubirInformeSustentoDiferencias />}
           />
         </Route>
       </Route>
