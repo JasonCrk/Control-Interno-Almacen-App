@@ -48,3 +48,16 @@ export const createInformeSustentoDiferencias: CreateDocumentService = async (
     })
     .then(response => response.data)
 }
+
+export const createInformeFaltantes: CreateDocumentService = async (
+  data
+): Promise<MessageResponse> => {
+  const accessToken = store.getState().auth.accessToken
+  return informeBaseEndpoint
+    .post<MessageResponse>("/faltante", data, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(response => response.data)
+}

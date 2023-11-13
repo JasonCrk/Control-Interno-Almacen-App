@@ -20,6 +20,7 @@ import SubirActaEntregaProductosSinFinesLucro from "../pages/acta/SubirActaEntre
 
 import InformesSustentoDiferencias from "../pages/informe/InformesSustentoDiferencias.page"
 import DetalleInformeSustentoDiferencias from "../pages/informe/DetalleInformeSustentoDiferencias.page"
+import SubirInformeFaltante from "../pages/informe/SubirInformeFaltante.page"
 import SubirInformeSustentoDiferencias from "../pages/informe/SubirInformeSustentoDiferencias.page"
 
 import ListaProductos from "../pages/ListaProductos.page"
@@ -131,6 +132,10 @@ export const router = createBrowserRouter(
           <Route
             path="/informes/sustento-diferencias/:informeId"
             element={<DetalleInformeSustentoDiferencias />}
+          />
+          <Route
+            path="/informes/faltante/subir"
+            element={<SubirInformeFaltante />}
           />
         </Route>
       </Route>
