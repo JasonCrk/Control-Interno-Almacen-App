@@ -75,8 +75,7 @@ function DetalleMemorandumSolicitudDesignacion() {
       }
       options={(document: MemorandumResponse) => (
         <>
-          {role === UserRole.JEFE_UNIDAD_LOGISTICA ||
-          role === UserRole.TECNICO_ADMINISTRATIVO_LOGISTICA ? (
+          {role === UserRole.JEFE_UNIDAD_LOGISTICA ? (
             <Button
               colorScheme="green"
               isLoading={isLoadingApproveMemorandum}
