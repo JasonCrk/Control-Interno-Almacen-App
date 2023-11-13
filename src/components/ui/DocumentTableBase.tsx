@@ -37,8 +37,10 @@ const DocumentTableBase: FC<Props> = ({
   path,
   extraColumns,
 }) => {
-  const pathname = path.endsWith("/") ? path.slice(0, path.length - 1) : path
   const navigate = useNavigate()
+
+  const pathname = path.endsWith("/") ? path.slice(0, path.length - 1) : path
+  const numberColumns = extraColumns ? 2 + extraColumns.length : 2
 
   return (
     <Card mt={4} overflow={"hidden"}>
@@ -59,7 +61,7 @@ const DocumentTableBase: FC<Props> = ({
           <Tbody>
             {isLoading || !documents ? (
               <Tr>
-                <Td colSpan={2}>
+                <Td colSpan={numberColumns}>
                   <Center my={1}>
                     <Spinner
                       thickness="4px"
@@ -93,7 +95,7 @@ const DocumentTableBase: FC<Props> = ({
               ))
             ) : (
               <Tr>
-                <Td colSpan={2} textAlign={"center"}>
+                <Td colSpan={numberColumns} textAlign={"center"}>
                   No se ha encontrado memorandums
                 </Td>
               </Tr>
