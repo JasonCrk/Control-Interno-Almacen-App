@@ -14,6 +14,7 @@ import DetalleMemorandumSolicitudDesignacion from "../pages/memorandum/DetalleMe
 import SubirMemorandumSolicitudDesignacion from "../pages/memorandum/SubirMemorandumSolicitudDesignacion.page"
 
 import SubirActaInventario from "../pages/acta/SubirActaInventario.page"
+import SubirActaEntregaProductosSinFinesLucro from "../pages/acta/SubirActaEntregaProductosSinFinesLucro.page"
 
 import SubirInformeSustentoDiferencias from "../pages/informe/SubirInformeSustentoDiferencias.page"
 
@@ -106,6 +107,10 @@ export const router = createBrowserRouter(
           <Route
             path="informes/sustento-diferencias/subir"
             element={<SubirInformeSustentoDiferencias />}
+          />
+          <Route
+            path="actas/entrega-productos-sin-fines-lucro/subir"
+            element={<SubirActaEntregaProductosSinFinesLucro />}
           />
         </Route>
       </Route>
