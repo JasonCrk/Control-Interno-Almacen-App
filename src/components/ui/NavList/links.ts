@@ -10,12 +10,6 @@ interface LinkItem {
 export const LINKS: LinkItem[] = [
   {
     id: crypto.randomUUID(),
-    to: "/memorandums/solicitud-asignacion",
-    name: "Memorandums de solicitud de asignación",
-    role: [UserRole.JEFE_UNIDAD_LOGISTICA],
-  },
-  {
-    id: crypto.randomUUID(),
     to: "/actas/inventario",
     name: "Actas de inventario",
     role: [UserRole.JEFE_UNIDAD_LOGISTICA],
