@@ -35,6 +35,11 @@ import { BsTrash } from "react-icons/bs"
 
 import { longDatetimeFormat } from "../../utils/datetimeFormats"
 
+interface TableColumn {
+  header: string
+  cell: (document: any) => JSX.Element
+}
+
 interface Props {
   isLoading: boolean
   path: string
@@ -42,11 +47,13 @@ interface Props {
   documents: (unknown & DocumentItem)[] | undefined
   onDeleteService: DeleteDocumentService
   onUpdateService: UpdateDocumentService
+  extraColumns?: TableColumn[]
 }
 
 const DocumentTable: FC<Props> = ({
   isLoading,
   documents,
+  extraColumns,
   path,
   refetch,
   onDeleteService,
@@ -104,6 +111,10 @@ const DocumentTable: FC<Props> = ({
               <Tr>
                 <Th color={"white"}>Titulo</Th>
                 <Th color={"white"}>Fecha de creación</Th>
+                {extraColumns &&
+                  extraColumns.map(column => (
+                    <Th color={"white"}>{column.header}</Th>
+                  ))}
                 <Th></Th>
               </Tr>
             </Thead>
@@ -135,7 +146,14 @@ const DocumentTable: FC<Props> = ({
                     }}
                   >
                     <Td>{document.title}</Td>
+
                     <Td>{longDatetimeFormat(document.createdAt)}</Td>
+
+                    {extraColumns &&
+                      extraColumns.map(column => (
+                        <Td>{column.cell(document)}</Td>
+                      ))}
+
                     <Td display={"flex"} gap={2} alignItems={"center"}>
                       <IconButton
                         aria-label="edit"
