@@ -113,7 +113,9 @@ const DocumentTable: FC<Props> = ({
                 <Th color={"white"}>Fecha de creación</Th>
                 {extraColumns &&
                   extraColumns.map(column => (
-                    <Th color={"white"}>{column.header}</Th>
+                    <Th key={crypto.randomUUID()} color={"white"}>
+                      {column.header}
+                    </Th>
                   ))}
                 <Th></Th>
               </Tr>
@@ -151,7 +153,9 @@ const DocumentTable: FC<Props> = ({
 
                     {extraColumns &&
                       extraColumns.map(column => (
-                        <Td>{column.cell(document)}</Td>
+                        <Td key={crypto.randomUUID()}>
+                          {column.cell(document)}
+                        </Td>
                       ))}
 
                     <Td display={"flex"} gap={2} alignItems={"center"}>
