@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom"
 
+import { UserRole } from "../../models/user.model"
 import { DocumentId } from "../../models/document.model"
+
+import { useAppSelector } from "../../store/hooks"
 
 import {
   MemorandumResponse,
@@ -17,13 +20,11 @@ import { useCallService } from "../../hooks/useCallFetch"
 import { Button, useToast } from "@chakra-ui/react"
 
 import DocumentDetails from "../../components/ui/DocumentDetails"
-import { useAppSelector } from "../../store/hooks"
-import { UserRole } from "../../models/user.model"
 
 function DetalleMemorandumSolicitudDesignacion() {
   const role = useAppSelector(state => state.auth.user?.role)
-  const { memorandumId } = useParams()
 
+  const { memorandumId } = useParams()
   const toast = useToast()
 
   const {
