@@ -13,6 +13,8 @@ import MemorandumsSolicitudDesignacion from "../pages/memorandum/MemorandumsSoli
 import DetalleMemorandumSolicitudDesignacion from "../pages/memorandum/DetalleMemorandumSolicitudDesignacion.page"
 import SubirMemorandumSolicitudDesignacion from "../pages/memorandum/SubirMemorandumSolicitudDesignacion.page"
 
+import ActasInventario from "../pages/acta/ActasInventario.page"
+import DetalleActaInventario from "../pages/acta/DetalleActaInventario.page"
 import SubirActaInventario from "../pages/acta/SubirActaInventario.page"
 import SubirActaEntregaProductosSinFinesLucro from "../pages/acta/SubirActaEntregaProductosSinFinesLucro.page"
 
@@ -111,6 +113,14 @@ export const router = createBrowserRouter(
           <Route
             path="actas/entrega-productos-sin-fines-lucro/subir"
             element={<SubirActaEntregaProductosSinFinesLucro />}
+          />
+        </Route>
+
+        <Route element={<HasRole roles={[UserRole.JEFE_UNIDAD_LOGISTICA]} />}>
+          <Route path="/actas/inventario" element={<ActasInventario />} />
+          <Route
+            path="/actas/inventario/:actaId"
+            element={<DetalleActaInventario />}
           />
         </Route>
       </Route>
