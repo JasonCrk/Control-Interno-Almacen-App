@@ -18,6 +18,8 @@ import DetalleActaInventario from "../pages/acta/DetalleActaInventario.page"
 import SubirActaInventario from "../pages/acta/SubirActaInventario.page"
 import SubirActaEntregaProductosSinFinesLucro from "../pages/acta/SubirActaEntregaProductosSinFinesLucro.page"
 
+import InformesSustentoDiferencias from "../pages/informe/InformesSustentoDiferencias.page"
+import DetalleInformeSustentoDiferencias from "../pages/informe/DetalleInformeSustentoDiferencias.page"
 import SubirInformeSustentoDiferencias from "../pages/informe/SubirInformeSustentoDiferencias.page"
 
 import ListaProductos from "../pages/ListaProductos.page"
@@ -121,6 +123,14 @@ export const router = createBrowserRouter(
           <Route
             path="/actas/inventario/:actaId"
             element={<DetalleActaInventario />}
+          />
+          <Route
+            path="/informes/sustento-diferencias"
+            element={<InformesSustentoDiferencias />}
+          />
+          <Route
+            path="/informes/sustento-diferencias/:informeId"
+            element={<DetalleInformeSustentoDiferencias />}
           />
         </Route>
       </Route>
