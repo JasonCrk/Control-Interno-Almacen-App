@@ -3,7 +3,7 @@ import { FC } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useAppDispatch } from "../../store/hooks"
-import { setLogoutAuth } from "../../store/auth/authSlice"
+import { setLogoutAuth, setUserAuth } from "../../store/auth/authSlice"
 
 import { logout } from "../../features/authentication/services/logout.service"
 
@@ -22,8 +22,9 @@ const NavbarAside: FC = () => {
   const handleLogout = async () => {
     logout()
       .then(() => {
-        navigate("/auth/login")
         dispatch(setLogoutAuth())
+        navigate("/auth/login")
+        dispatch(setUserAuth(null))
 
         localStorage.removeItem("accessToken")
         localStorage.removeItem("refreshToken")
