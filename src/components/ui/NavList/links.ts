@@ -46,7 +46,7 @@ export const LINKS: LinkItem[] = [
   },
   {
     id: crypto.randomUUID(),
-    to: "/memorandums/solicitud-designacion",
+    to: "/memorandums",
     name: "Memorandums de solicitud de designación",
     role: [
       UserRole.TECNICO_ADMINISTRATIVO_LOGISTICA,

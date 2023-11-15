@@ -1,6 +1,9 @@
-export const longDatetimeFormat = (datetime: string): string => {
+export const datetimeFormat = (
+  datetime: string,
+  dateStyle: Intl.DateTimeFormatOptions["dateStyle"]
+): string => {
   return new Intl.DateTimeFormat("es-ES", {
-    dateStyle: "full",
+    dateStyle,
     timeStyle: "short",
     timeZone: "America/Lima",
     hour12: true,

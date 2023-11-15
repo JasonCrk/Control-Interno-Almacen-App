@@ -17,7 +17,7 @@ import {
   Tr,
 } from "@chakra-ui/react"
 
-import { longDatetimeFormat } from "../../utils/datetimeFormats"
+import { datetimeFormat } from "../../utils/datetimeFormats"
 
 interface TableColumn {
   header: string
@@ -86,7 +86,7 @@ const DocumentTableBase: FC<Props> = ({
                   }}
                 >
                   <Td>{document.title}</Td>
-                  <Td>{longDatetimeFormat(document.createdAt)}</Td>
+                  <Td>{datetimeFormat(document.createdAt, "medium")}</Td>
                   {extraColumns &&
                     extraColumns.map(column => (
                       <Td key={crypto.randomUUID()}>{column.cell(document)}</Td>

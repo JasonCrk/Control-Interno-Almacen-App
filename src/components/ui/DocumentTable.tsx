@@ -33,7 +33,7 @@ import UpdateDocumentModal from "../form/UpdateDocumentModal"
 import { FiEdit } from "react-icons/fi"
 import { BsTrash } from "react-icons/bs"
 
-import { longDatetimeFormat } from "../../utils/datetimeFormats"
+import { datetimeFormat } from "../../utils/datetimeFormats"
 
 interface TableColumn {
   header: string
@@ -150,7 +150,7 @@ const DocumentTable: FC<Props> = ({
                   >
                     <Td>{document.title}</Td>
 
-                    <Td>{longDatetimeFormat(document.createdAt)}</Td>
+                    <Td>{datetimeFormat(document.createdAt, "medium")}</Td>
 
                     {extraColumns &&
                       extraColumns.map(column => (

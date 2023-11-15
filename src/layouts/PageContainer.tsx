@@ -8,10 +8,7 @@ import NavbarAside from "../components/ui/NavbarAside"
 
 const PageContainer: FC = () => {
   return (
-    <Grid
-      templateColumns={{ sm: "1fr", md: "37% 1fr", lg: "25% 1fr" }}
-      height={"100vh"}
-    >
+    <Grid templateColumns={{ sm: "1fr", md: "37% 1fr", lg: "25% 1fr" }}>
       <NavbarAside />
       <GridItem>
         <Outlet />

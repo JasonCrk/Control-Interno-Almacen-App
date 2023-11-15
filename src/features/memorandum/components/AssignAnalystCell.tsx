@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { MemorandumResponse } from "../models"
+import { MemorandumResponse, MemorandumStatus, MemorandumType } from "../models"
 import { DocumentId } from "../../../models/document.model"
 
 import { Avatar, Button, Flex, Text } from "@chakra-ui/react"
@@ -14,11 +14,17 @@ const AssignAnalystCell: FC<Props> = ({
   memorandum,
   handleSelectionMemorandum,
 }) => {
+  if (
+    memorandum.status === MemorandumStatus.PENDIENTE &&
+    memorandum.type === MemorandumType.SOLICITUD_DESIGNACION
+  )
+    return <Text>Falta aprobación</Text>
+
   if (memorandum.assigned)
     return (
       <Flex alignItems={"center"} gap={2}>
         <Avatar src={memorandum.assigned.avatar} />
-        <Text>
+        <Text fontSize={"1rem"} lineHeight={"24px"}>
           {memorandum.assigned.firstName}
           <br />
           {memorandum.assigned.lastName}

@@ -12,12 +12,12 @@ import { MemorandumDetails, MemorandumResponse } from "../models"
 
 import { memorandumsBaseEndpoint } from "../../../services/endpoints"
 
-export const getAllMemorandumsSolicitudDesignacion = async (
+export const getAllMemorandums = async (
   searchQuery: string
 ): Promise<ListResponse<MemorandumResponse>> => {
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
-    .get<ListResponse<MemorandumResponse>>("/solicitud-designacion", {
+    .get<ListResponse<MemorandumResponse>>("", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -33,7 +33,7 @@ export const getMemorandumById = async (
 ): Promise<MemorandumDetails> => {
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
-    .get<MemorandumDetails>("/solicitud-designacion/" + memorandumId, {
+    .get<MemorandumDetails>(`/${memorandumId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -41,12 +41,12 @@ export const getMemorandumById = async (
     .then(response => response.data)
 }
 
-export const createMemorandumSolicitudDesignacion = async (
+export const createMemorandum = async (
   data: FormData
 ): Promise<MessageResponse> => {
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
-    .post<MessageResponse>("/solicitud-designacion", data, {
+    .post<MessageResponse>("", data, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -64,7 +64,7 @@ export const assignAnalystToMemorandum = async ({
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
     .post<MessageResponse>(
-      `/solicitud-designacion/${memorandumId}/asignar-analista`,
+      `/${memorandumId}/asignar-analista`,
       { analistaId: analystId },
       {
         headers: {
@@ -75,13 +75,13 @@ export const assignAnalystToMemorandum = async ({
     .then(response => response.data)
 }
 
-export const approveMemorandumSolicitudDesignacion = (
+export const approveMemorandumSolicitudDesignacion = async (
   memorandumId: DocumentId
 ) => {
   const accessToken = store.getState().auth.accessToken
   return memorandumsBaseEndpoint
     .post<MessageResponse>(
-      `/solicitud-designacion/${memorandumId}/aprobar`,
+      `/${memorandumId}/solicitud-designacion/aprobar`,
       null,
       {
         headers: {
@@ -92,26 +92,40 @@ export const approveMemorandumSolicitudDesignacion = (
     .then(response => response.data)
 }
 
-export const updateMemorandumSolicitudDesignacion: UpdateDocumentService =
-  async ({ documentId: memorandumId, data }) => {
-    const accessToken = store.getState().auth.accessToken
-    return memorandumsBaseEndpoint
-      .put<MessageResponse>("/solicitud-designacion/" + memorandumId, data, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then(response => response.data)
-  }
+export const approveMemorandumDesignacion = async (
+  memorandumId: DocumentId
+) => {
+  const accessToken = store.getState().auth.accessToken
+  return memorandumsBaseEndpoint
+    .post<MessageResponse>(`/${memorandumId}/designacion/aprobar`, null, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(response => response.data)
+}
 
-export const deleteMemorandumSolicitudDesignacion: DeleteDocumentService =
-  async memorandumId => {
-    const accessToken = store.getState().auth.accessToken
-    return memorandumsBaseEndpoint
-      .delete<MessageResponse>("/solicitud-designacion/" + memorandumId, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then(response => response.data)
-  }
+export const updateMemorandum: UpdateDocumentService = async ({
+  documentId: memorandumId,
+  data,
+}) => {
+  const accessToken = store.getState().auth.accessToken
+  return memorandumsBaseEndpoint
+    .put<MessageResponse>(`/${memorandumId}`, data, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(response => response.data)
+}
+
+export const deleteMemorandum: DeleteDocumentService = async memorandumId => {
+  const accessToken = store.getState().auth.accessToken
+  return memorandumsBaseEndpoint
+    .delete<MessageResponse>(`/${memorandumId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(response => response.data)
+}

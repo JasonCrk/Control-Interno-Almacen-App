@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-import { createMemorandumSolicitudDesignacion } from "../../features/memorandum/service"
+import { createMemorandum } from "../../features/memorandum/service"
 
 import { Container, Heading, useToast } from "@chakra-ui/react"
 
@@ -16,9 +16,9 @@ function SubirMemorandumSolicitudDesignacion() {
         memorandum de solicitud de designación
       </Heading>
       <CreateDocumentForm
-        createDocumentService={createMemorandumSolicitudDesignacion}
+        createDocumentService={createMemorandum}
         onSuccess={data => {
-          navigate("/memorandums/solicitud-designacion")
+          navigate("/memorandums")
           toast({
             status: "success",
             title: "Documento Subido",

@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom"
+
 import { getAllInformesSustentoDiferencias } from "../../features/informe/service"
 
 import { useFetch } from "../../hooks/useFetch"
@@ -7,6 +9,8 @@ import { Container, Heading } from "@chakra-ui/react"
 import DocumentTableBase from "../../components/ui/DocumentTableBase"
 
 function InformesSustentoDiferencias() {
+  const { pathname } = useLocation()
+
   const { isLoading, data: informes } = useFetch({
     serviceFn: () => getAllInformesSustentoDiferencias(),
   })
@@ -14,10 +18,10 @@ function InformesSustentoDiferencias() {
   return (
     <Container maxW={"container.lg"} mt={4}>
       <Heading as="h1" size="lg">
-        Actas de Inventario
+        Informe de Sustento de Diferencias
       </Heading>
       <DocumentTableBase
-        path="/informes/sustento-diferencias/"
+        path={pathname}
         documents={informes?.data}
         isLoading={isLoading}
       />

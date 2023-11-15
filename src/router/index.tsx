@@ -9,8 +9,8 @@ import { UserRole } from "../models/user.model"
 import Login from "../pages/Login.page"
 import PaginaPrincipal from "../pages/MenuPrincipal.page"
 
-import MemorandumsSolicitudDesignacion from "../pages/memorandum/MemorandumsSolicitudDesignacion.page"
-import DetalleMemorandumSolicitudDesignacion from "../pages/memorandum/DetalleMemorandumSolicitudDesignacion.page"
+import MemorandumsSolicitudDesignacion from "../pages/memorandum/Memorandums.page"
+import DetalleMemorandum from "../pages/memorandum/DetalleMemorandum.page"
 import SubirMemorandumSolicitudDesignacion from "../pages/memorandum/SubirMemorandumSolicitudDesignacion.page"
 
 import ActasInventario from "../pages/acta/ActasInventario.page"
@@ -59,12 +59,12 @@ export const router = createBrowserRouter(
           }
         >
           <Route
-            path="memorandums/solicitud-designacion"
+            path="memorandums"
             element={<MemorandumsSolicitudDesignacion />}
           />
           <Route
-            path="memorandums/solicitud-designacion/:memorandumId"
-            element={<DetalleMemorandumSolicitudDesignacion />}
+            path="memorandums/:memorandumId"
+            element={<DetalleMemorandum />}
           />
         </Route>
 
@@ -79,7 +79,7 @@ export const router = createBrowserRouter(
           }
         >
           <Route
-            path="memorandums/solicitud-designacion/subir"
+            path="memorandums/subir"
             element={<SubirMemorandumSolicitudDesignacion />}
           />
         </Route>

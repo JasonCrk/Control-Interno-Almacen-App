@@ -39,6 +39,9 @@ const NavbarAside: FC = () => {
       flexDirection={"column"}
       justifyContent={"space-between"}
       bg={"gray.700"}
+      height={"100vh"}
+      position={"sticky"}
+      top={0}
     >
       <Box display={"flex"} flexDirection={"column"} gap={5}>
         <Logo
